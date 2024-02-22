@@ -50,28 +50,24 @@ function getDhcpdLeases() {
                 $('#results').empty();
                 // Loop over leases and add details for each IP
                 leases.forEach(function (lease, index) {
-                    console.log(lease);
-                       // Skip IP addresses with "N/A"
+                    // Skip IP addresses with "N/A"
                     if (!lease.ip) {
                         return;
                     }
-
                     // Create a container for each IP
                     var ipContainer = $('<div>').addClass('ip-container');
                     
-                    // Add IP address as heading with click event
+                    // Add IP address as heading with click event and + and - toggle icons
                     var ipHeading = $('<h4>').addClass('ip-heading clickable').html('<span class="expand-icon">+</span> ' + lease.ip).click(function () {
                         var details = $(this).next('.lease-details');
                         details.slideToggle();
                         var expandIcon = $(this).find('.expand-icon');
                         expandIcon.text(expandIcon.text() === '+' ? '-' : '+');
                     });
-
+                    // Put the IP heading in the container
                     ipContainer.append(ipHeading);
-
-                    // Create a list for lease details
-                    var leaseDetailsList = $('<ul>').addClass('list-group lease-details').hide(); // Hide details by default
-
+                    // Create a list for lease details adn hide it by default as it should be expanded by clicking the IP heading
+                    var leaseDetailsList = $('<ul>').addClass('list-group lease-details').hide();
                     // Add lease details to the list
                     leaseDetailsList.append(createLeaseDetailListItem('Starts', lease.starts));
                     leaseDetailsList.append(createLeaseDetailListItem('Ends', lease.ends));
@@ -79,11 +75,9 @@ function getDhcpdLeases() {
                     leaseDetailsList.append(createLeaseDetailListItem('CLTT', lease.cltt));
                     leaseDetailsList.append(createLeaseDetailListItem('MAC', lease.mac));
                     leaseDetailsList.append(createLeaseDetailListItem('Vendor Class Identifier', lease['vendor-class-identifier'] || 'N/A'));
-
-                    // Append lease details to the container
+                    // Append lease details to the ip container
                     ipContainer.append(leaseDetailsList);
-
-                    // Append the container to the results
+                    // Now stuff it into the results div
                     $('#results').append(ipContainer);
                 });
             }
@@ -95,13 +89,13 @@ function getDhcpdLeases() {
 }
 
 
-// Helper function to create a list item for lease details
 function createLeaseDetailListItem(label, value) {
-    // Replace numeric status with descriptive term
+    // Only look for items in the array that have statuses on them and ignore if it is null or undefined
     if (label === 'Starts' || label === 'Ends' || label === 'TSTP' || label === 'CLTT') {
         if (value !== null && value !== undefined) {
+            // Split it up and add the state to the front of the value
             var parts = value.split(' ');
-            var status = parts[0]; // Extract the numeric status from the value
+            var status = parts[0]; 
             switch (status) {
                 case '0':
                     value = 'Active ' + parts.slice(1).join(' ');
@@ -126,7 +120,7 @@ function createLeaseDetailListItem(label, value) {
             }
         }
     }
-    return $('<li>').addClass('list-group-item d-flex justify-content-between align-items-center bg-dark text-light custom-border')
+    return $('<li>').addClass('list-group-item d-flex justify-content-between align-items-center')
         .html('<span>' + label + ': ' + (value || 'N/A') + '</span>');
 }
 
@@ -143,30 +137,13 @@ $('#refreshBtn').click(function (event) {
 
 // CSS for the clickable style and expand icon
 <style>
-    .clickable {
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 1.5rem;
-        display: flex;
-        align-items: center;
-    }
-
-    .expand-icon {
-        margin-right: 0.5rem;
-    }
-
-    .ip-container {
-        background-color: #2e3338; /* Set background color to dark */
-        color: #ffffff; /* Set text color to light */
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px; /* Optional: Add border-radius for rounded corners */
-    }
     .list-group-item{
         border-radius: 5px !important;
-    }
-    .ip-heading {
-        margin: 0;
+        background-color: #222 !important;
+        margin: 1px 0 !important;
+        border: 0px !important;
+        font-size: 0.9em;
+        color: #ccc;
     }
 </style>
 

@@ -503,6 +503,26 @@ input::placeholder {
     stroke-dashoffset: 1000;
     animation: dash-line 0.95s 0.35s ease-in-out forwards;
 }
+.clickable {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+.expand-icon {
+    margin-right: 0.5rem;
+}
+.ip-container {
+    background-color: #2e3338; /* Set background color to dark */
+    color: #ffffff; /* Set text color to light */
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+}
+.ip-heading {
+    margin: 0;
+}
 #trafficContainer{
     margin: 5px;
     align-items: center;
