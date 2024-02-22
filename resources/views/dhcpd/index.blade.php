@@ -14,12 +14,12 @@ DHCP Leases
                 <div class="col mb-4">
                     <div class="bg-dark text-light p-4 rounded d-flex flex-column h-100">
                         <p>View current and recently expired dhcp leases and its details<p>
-                        <p class="text-center pt-4">
+                        <p>Note: This does not include DHCP reservations<p>
+                        <p class="text-center pt-4 mb-4">
                             <button class="btn btn-warning border-2 text-white ml-4 mt-2" type="button" id="refreshBtn">Refresh</button>
                         </p>
 
                         <div id='results' class=''>
-                            
                         </div>
                     </div>
                 </div>
