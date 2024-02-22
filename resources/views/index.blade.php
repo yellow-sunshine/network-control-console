@@ -34,6 +34,7 @@ Network Control Console
             </div>
         </div>
 
+
         <div class="col mb-4">
             <div class="bg-dark text-light p-4 rounded d-flex flex-column h-100">
                 <div class='text-center'>
@@ -48,16 +49,6 @@ Network Control Console
             </div>
         </div>
 
-        <div class="col mb-4">
-            <div class="bg-dark text-light p-4 rounded d-flex flex-column h-100">
-                <div class='text-center'>
-                    <h2 class="mt-2 text-xl font-semibold"> <i class="fa-solid fa-network-wired" style="float: left;"></i> ISC-dhcpd</h2>
-                </div>
-                <p class="mt-3 text-sm">
-                    Explore up-to-date DHCP lease details within the daha.us network and show current VLAN or common DHCP parameters.
-                </p>
-            </div>
-        </div>
 
         <div class="col mb-4">
             <div class="bg-dark text-light p-4 rounded d-flex flex-column h-100">
@@ -80,6 +71,22 @@ Network Control Console
                 </div>
             </div>
         </div>
+
+
+        <div class="col mb-4">
+            <div class="bg-dark text-light p-4 rounded d-flex flex-column h-100">
+                <div class='text-center'>
+                    <h2 class="mt-2 text-xl font-semibold"><i class="fa-solid fa-network-wired" style="float: left;"></i>DHCP Leases</h2>
+                </div>
+                <p class="mt-3 text-sm">
+                    View current DHCP lease details within the daha.us network and show current VLAN and common DHCP.
+                </p>
+                <p class="text-center pt-4">
+                    <button class="btn btn-warning border-2 text-white ml-2" type="button" id="dhcpDdnsBtn">GO</button>
+                </p>
+            </div>
+        </div>
+
 
         <div class="col mb-4">
             <div class="bg-dark text-light p-4 rounded d-flex flex-column h-100">
@@ -118,6 +125,8 @@ Network Control Console
         </div>
     </div>
 </div>
+
+
 <div class="container">
     <div class="row g-3">
     <?php
@@ -132,8 +141,7 @@ Network Control Console
             ['title' => 'Plex', 'url' => 'http://milano.daha.us:32400'],
             ['title' => 'Synology Photos', 'url' => 'https://venenzia.daha.us:15001/?launchApp=SYNO.Foto.AppInstance&SynoToken=0rUbG7rmd9aGw#/personal_space/timeline'],
             ['title' => 'HL-2170W Printer', 'url' => 'http://10.50.0.48/printer/main.html'],
-            ['title' => 'phpMyAdmin', 'url' => 'https://www.brentrussell.com'],
-            ['title' => 'brentrussell.com', 'url' => 'https://brentrussell.com/phpmyadmin/'],
+            ['title' => 'phpMyAdmin', 'url' => 'https://brentrussell.com/phpmyadmin/']
         ];
         foreach ($links as $link) {
             print '<div class="col col-md-3 col-sm-4 col-6">';
@@ -196,6 +204,12 @@ $(document).ready(function(){
     $('#cloudflareDdnsBtn').click(function(event) {
         searchRoute('cloudflareddns', '');
     });
+
+    $('#dhcpDdnsBtn').click(function(event) {
+        searchRoute('dhcpd', '');
+    });
+
+
     $('#cacheNginxBtn').click(function(event) {
         searchRoute('flush-nginx-cache', '');
     });
