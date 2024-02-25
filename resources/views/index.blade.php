@@ -116,7 +116,7 @@ Network Control Console
                     <div class="col-md-12 col-lg-6">
                         <div class="card bg-dark text-light p-4 rounded shadow d-flex justify-content-center align-items-center">
                             <button class="btn btn-danger text-sm border-2 ml-2" type="button" id="delPhpmemcacheKeysBtn">
-                            Del phpmemcache keys
+                            Del Memcached keys
                             </button>
                         </div>
                     </div>

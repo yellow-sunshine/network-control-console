@@ -36,7 +36,7 @@ DHCP Leases
 
 // Get DHCP Leases
 function getDhcpdLeases() {
-    var url = '{{ $dnsDchpdApiUrl }}/dhcpd';
+    var url = '{{ $dnsDchpdApiUrl }}/dhcpd/leases';
     $.ajax({
         url: url,
         type: 'GET',
